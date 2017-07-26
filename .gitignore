@@ -9,9 +9,6 @@ seed-fluig/mechanisms
 seed-fluig/wcm/widget
 seed-fluig/workflow/.resources
 
-# Dataset auxiliar. Não faz parte do projeto
-src/datasets/fluig_converte_form.js
-
 # compiled output
 dist
 tmp
