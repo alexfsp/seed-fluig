@@ -1,0 +1,69 @@
+{
+  "rules": {
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "no-use-before-define": [
+      2,
+      "nofunc"
+    ],
+    // TODO: turn on later
+    "comma-dangle": [
+      0
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "no-underscore-dangle": [
+      0
+    ],
+    "no-param-reassign": [2, { "props": false }],
+    "no-console": "off",
+    "max-len": ["error", 300, {"ignoreRegExpLiterals": true}],
+    "angular/di": [2, "array"]
+
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "angular"
+  ],
+
+  "globals": {
+    "Masonry": true,
+    "FLUIGC": true,
+    "WCMAPI": true,
+    "parent": true,
+    "moment": true,
+    "DatasetFactory": true,
+    "ConstraintType": true,
+    "wdkAddChild": true,
+    "fnWdkRemoveChild": true
+  }
+}

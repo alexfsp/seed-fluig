@@ -1,0 +1,14 @@
+{
+  "fonts": [
+    "node_modules/components-font-awesome/fonts/**.*"
+  ],
+  "js": [
+    "node_modules/angular/angular.js",
+    "node_modules/angular-animate/angular-animate.js",
+    "node_modules/angular-locale-pt-br/angular-locale_pt-br.js",
+    "node_modules/chart.js/dist/Chart.js",
+    "node_modules/angular-chart.js/dist/angular-chart.js",
+    "node_modules/moment/moment.js",
+    "node_modules/moment/locale/pt-br.js"
+  ]
+}

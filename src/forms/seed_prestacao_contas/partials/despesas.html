@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Despesas</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <table class="table table-condensed table-striped" tablename="despesas" noaddbutton="true" nodeletebutton="true">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th class="col-sm-1">Ref</th>
+                                <th class="col-sm-2">Data</th>
+                                <th class="col-sm-2">Despesa</th>
+                                <th class="col-sm-2">Fornecedor</th>
+                                <th class="col-sm-3">Histórico</th>
+                                <th class="col-sm-2">Valor</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span ng-if="vm.Params.edit" ng-click="vm.removeDepsesa($event)" class="fluigicon fluigicon-md fluigicon-trash fs-cursor-pointer"></span>
+                                </td>
+                                <td ng-child="vm.Formulario.despesaRef" id="despesaRef">
+                                    <h4>1</h4>
+                                    <!-- <input type="text" class="form-control" name="despesaRef" ng-model="vm.Formulario.despesaRef" ng-value="vm.Formulario.despesaRef"> -->
+                                </td>
+                                <td ng-child="vm.Formulario.despesaData" id="despesaData">
+                                    <input type="text" class="form-control" name="despesaData_input" ng-model="vm.Formulario.despesaData" ng-child-tags='{"fluig-date-mask":""}'>
+                                    <input type="hidden" name="despesaData" ng-value="vm.Formulario.despesaData">
+                                </td>
+                                <td ng-child="vm.Formulario.despesa" id="despesa">
+                                    <input type="text" ng-child-tags='{"fluig-autocomplete":""}' class="form-control" name="despesa_input" ng-model="vm.Formulario.despesa" values="Despesas" display-key="descricao">
+                                    <input type="hidden" class="form-control" name="despesa" ng-value="vm.Formulario.despesa">
+                                </td>
+                                <td ng-child="vm.Formulario.despesaFornecedor" id="despesaFornecedor">
+                                    <input type="text" class="form-control" name="despesaFornecedor" ng-model="vm.Formulario.despesaFornecedor" ng-value="vm.Formulario.despesaFornecedor">
+                                </td>
+                                <td ng-child="vm.Formulario.despesaHistorico" id="despesaHistorico">
+                                    <input type="text" class="form-control" name="despesaHistorico" ng-model="vm.Formulario.despesaHistorico" ng-value="vm.Formulario.despesaHistorico">
+                                </td>
+                                <td ng-child="vm.Formulario.despesaValor" id="despesaValor">
+                                    <input type="text" class="form-control" name="despesaValor_input" ng-model="vm.Formulario.despesaValor" ng-child-tags='{"fluig-money-mask":""}'>
+                                    <input type="hidden" class="form-control" name="despesaValor" ng-value="vm.Formulario.despesaValor">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button ng-if="vm.Params.edit" type="button" class="btn btn-lg btn-default" ng-click="vm.adicionaDespesa()">Incluir Despesa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Resumo</h3>
+            </div>
+            <div class="panel-body">
+
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">Adiantamento</label>
+                        <input type="text" name="adiantamento_input" class="form-control" ng-model="vm.Formulario.adiantamento" fluig-money-mask>
+                        <input type="hidden" name="adiantamento" class="form-control" ng-value="vm.Formulario.adiantamento">
+                        <!-- <div class="alert alert-warning animate fs-sm-space" role="alert">
+                            <span class="fluigicon fluigicon-md fluigicon-exclamation-sign"></span> Somente preencher se houve adiantamento
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="form-group">
+                        <label class="control-label">Total de Despesas</label>
+                        <h3>{{1000.43 | currency}}</h3>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Montante a ser reembolsado ou pago</label>
+                        <h3 class="text-danger">{{-99.57 | currency}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

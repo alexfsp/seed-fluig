@@ -1,0 +1,576 @@
+/**
+ * Datetime range styles
+ */
+
+.datetime-range {
+  z-index: 1000;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 4em;
+  margin: 0;
+  padding: 0;
+  color: #444;
+  font-size: 14px;
+  font-family: sans-serif;
+  text-decoration: none;
+  text-align: center;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+
+
+/**
+ * Start and end datetime objects
+ */
+
+.datetime-range .start-datetime,
+.datetime-range .end-datetime {
+  cursor: pointer;
+  position: relative;
+  width: 47%;
+  height: 4em;
+  background-color: #d9edf7;
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .start-datetime {
+  position: absolute;
+  left: 0;
+}
+
+.datetime-range .end-datetime {
+  position: absolute;
+  left: 53%;
+}
+
+.datetime-range .start-datetime .date,
+.datetime-range .end-datetime .date {
+  color: #777;
+  font-size: 18px;
+  line-height: 40px;
+  margin-top: 9px;
+  display: block;
+  overflow: hidden;
+}
+
+.datetime-range .start-datetime .time,
+.datetime-range .end-datetime .time {
+  font-size: 1em;
+  line-height: 1em;
+  display: block;
+  overflow: hidden;
+}
+
+.datetime-range .start-datetime.active,
+.datetime-range .start-datetime:hover,
+.datetime-range .end-datetime.active,
+.datetime-range .end-datetime:hover {
+  background-color: #ddd;
+}
+
+.datetime-range .start-datetime::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-top: 2em solid transparent;
+  border-bottom: 2em solid transparent;
+  border-left: 1em solid #d9edf7;
+  transition: border-left 0.25s ease-out;
+  right: -1em;
+}
+
+.datetime-range .start-datetime.active::after,
+.datetime-range .start-datetime:hover::after {
+  border-left-color: #ddd;
+}
+
+.datetime-range .end-datetime::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-width: 2em 0 2em 1em;
+  border-style: solid;
+  border-color: #d9edf7 #d9edf7 #d9edf7 transparent;
+  transition: border-color 0.25s ease-out;
+  left: -1em;
+}
+
+.datetime-range .end-datetime.active::before,
+.datetime-range .end-datetime:hover::before {
+  border-color: #ddd #ddd #ddd transparent;
+}
+
+.datetime-range .start-datetime.warning,
+.datetime-range .end-datetime.warning {
+  background-color: rgba(255, 54, 46, 0.75);
+}
+
+.datetime-range .start-datetime.warning.active,
+.datetime-range .start-datetime.warning:hover,
+.datetime-range .end-datetime.warning.active,
+.datetime-range .end-datetime.warning:hover {
+  background-color: rgba(255, 54, 46, 0.75);
+}
+
+.datetime-range .start-datetime.warning::after {
+  border-left-color: rgba(255, 54, 46, 0.75);
+}
+
+.datetime-range .start-datetime.warning.active::after,
+.datetime-range .start-datetime.warning:hover::after {
+  border-left-color: rgba(255, 54, 46, 0.75);
+}
+
+.datetime-range .end-datetime.warning::before {
+  border-color: rgba(255, 54, 46, 0.75) rgba(255, 54, 46, 0.75) rgba(255, 54, 46, 0.75) transparent;
+}
+
+.datetime-range .end-datetime.warning.active::before,
+.datetime-range .end-datetime.warning:hover::before {
+  border-color: rgba(255, 54, 46, 0.75) rgba(255, 54, 46, 0.75) rgba(255, 54, 46, 0.75) transparent;
+}
+
+
+
+/**
+ * Presets
+ */
+
+.datetime-range .presets {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 5;
+  top: 4.5em;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  text-align: center;
+}
+
+.datetime-range .presets .dots {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.datetime-range .presets .dots .dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 3px;
+  vertical-align: top;
+  background-color: #d9edf7;
+}
+
+.datetime-range .presets .dots:hover .dot {
+  background-color: #ddd;
+}
+
+.datetime-range .presets .list {
+  display: none;
+}
+
+.datetime-range .presets .list.active {
+  display: block;
+}
+
+.datetime-range .presets .list .preset-button {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  color: #777;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  padding: 0 15px;
+  font-size: 1.5em;
+  line-height: 2em;
+  text-align: center;
+  outline: none;
+  border: 1px solid #aaa;
+  background-color: #d9edf7;
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .presets .list .preset-button:hover {
+  background: #ddd;
+}
+
+
+
+/**
+ * Edit datetime popover
+ */
+
+.datetime-range .edit-popover {
+  position: absolute;
+  z-index: 5;
+  top: 4.5em;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  background-color: #d9edf7;
+  border-radius: 0;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+}
+
+
+
+/**
+ * Calendar
+ */
+
+.datetime-range .calendar-toggle {
+  width: 100%;
+  color: #777;
+  font-size: 1.5em;
+  line-height: 2em;
+  cursor: pointer;
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .calendar-toggle::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #d9edf7;
+  width: 1em;
+  height: 1em;
+  top: -0.55em;
+  left: 45%;
+  z-index: 2;
+  border-color: #aaa;
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .calendar-toggle:hover,
+.datetime-range .calendar-toggle:hover::before {
+  background-color: #ddd;
+}
+
+.datetime-range .calendar-toggle.start::before {
+  left: 20%;
+}
+
+.datetime-range .calendar-toggle.end::before {
+  left: 74%;
+}
+
+.datetime-range .calendar .calendar-header {
+  cursor: default;
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  font-size: 1.5em;
+  line-height: 2em;
+}
+
+.datetime-range .calendar .calendar-header .arrow {
+  display: inline-block;
+  color: #ddd;
+  cursor: pointer;
+  line-height: 1.5em;
+  font-size: 1.5em;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-left {
+  position: absolute;
+  left: 0;
+  width: 2em;
+  height: 100%;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-left::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  border-right: 0.75em solid #ddd;
+  border-top: 0.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  transition: border 0.25s ease-out;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-left:hover::before {
+  border-right-color: #999;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-right {
+  position: absolute;
+  right: 0;
+  width: 2em;
+  height: 100%;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-right::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  right: 25%;
+  border-left: 0.75em solid #ddd;
+  border-top: 0.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  transition: border 0.25s ease-out;
+}
+
+.datetime-range .calendar .calendar-header .arrow.arrow-right:hover::before {
+  border-left-color: #999;
+}
+
+.datetime-range .calendar .calendar-body {
+  padding: 0.5em 0;
+}
+
+.datetime-range .calendar .calendar-body .weekdays {
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 1em;
+  line-height: 2em;
+  text-transform: uppercase;
+  padding: 0 1em;
+}
+
+.datetime-range .calendar .calendar-body .weekdays .weekday {
+  display: inline-block;
+  width: 5em;
+  height: 2.5em;
+}
+
+.datetime-range .calendar .calendar-body .weekdays .weekday {
+  display: inline-block;
+}
+
+.datetime-range .calendar .calendar-body .week {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 1.25em;
+  line-height: 2.65em;
+  letter-spacing: 1px;
+  padding: 0.5em 1em;
+}
+
+.datetime-range .calendar .calendar-body .week .date {
+  display: inline-block;
+  cursor: pointer;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .calendar .calendar-body .week .date.current {
+  color: #444;
+}
+
+.datetime-range .calendar .calendar-body .week .date:not(.active):hover {
+  background-color: #ddd;
+}
+
+.datetime-range .calendar .calendar-body .week .date.active,
+.datetime-range .calendar .calendar-body .week .date.inactive.active {
+  color: #d9edf7;
+  background-color: rgba(255, 69, 0, 0.75);
+}
+
+.datetime-range .calendar .calendar-body .week .date.inactive {
+  color: #aaa;
+}
+
+
+
+/**
+ * Timer
+ */
+
+.datetime-range .timer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.datetime-range .timer .timer-hours,
+.datetime-range .timer .timer-minutes,
+.datetime-range .timer .timer-seconds {
+  cursor: default;
+  width: 3em;
+  display: inline-block;
+  font-size: 3em;
+  line-height: 1.5em;
+  position: relative;
+}
+
+.datetime-range .timer .timer-hours .arrow,
+.datetime-range .timer .timer-minutes .arrow,
+.datetime-range .timer .timer-seconds .arrow {
+  position: relative;
+  color: #ddd;
+  cursor: pointer;
+  height: 1em;
+  margin: 0 0.5em;
+  line-height: 1em;
+  font-size: 0.75em;
+}
+
+.datetime-range .timer .timer-hours .arrow.arrow-up::before,
+.datetime-range .timer .timer-minutes .arrow.arrow-up::before,
+.datetime-range .timer .timer-seconds .arrow.arrow-up::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 0.4em);
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-bottom: 0.5em solid #ddd;
+  transition: border 0.25s ease-out;
+}
+
+.datetime-range .timer .timer-hours .arrow.arrow-up:hover::before,
+.datetime-range .timer .timer-minutes .arrow.arrow-up:hover::before,
+.datetime-range .timer .timer-seconds .arrow.arrow-up:hover::before {
+  border-bottom-color: #999;
+}
+
+.datetime-range .timer .timer-hours .arrow.arrow-down::before,
+.datetime-range .timer .timer-minutes .arrow.arrow-down::before,
+.datetime-range .timer .timer-seconds .arrow.arrow-down::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 0.4em);
+  border-left: 0.5em solid transparent;
+  border-right: 0.5em solid transparent;
+  border-top: 0.5em solid #ddd;
+  transition: border 0.25s ease-out;
+}
+
+.datetime-range .timer .timer-hours .arrow.arrow-down:hover::before,
+.datetime-range .timer .timer-minutes .arrow.arrow-down:hover::before,
+.datetime-range .timer .timer-seconds .arrow.arrow-down:hover::before {
+  border-top-color: #999;
+}
+
+.datetime-range .timer .timer-divider {
+  font-size: 3em;
+  line-height: 3em;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  animation-name: blinker;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+  0% {
+    opacity: 0.0;
+  }
+  5% {
+    opacity: 1.0;
+  }
+  95% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.0;
+  }
+}
+
+@-webkit-keyframes blinker {
+  0% {
+    opacity: 0.0;
+  }
+  5% {
+    opacity: 1.0;
+  }
+  95% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.0;
+  }
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 0.0;
+  }
+  5% {
+    opacity: 1.0;
+  }
+  95% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.0;
+  }
+}
+
+
+
+/**
+ * Close button
+ */
+
+.datetime-range .close-button {
+  position: absolute;
+  z-index: 5;
+  left: -1px;
+  cursor: pointer;
+  outline: none;
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  color: #777;
+  width: 25%;
+  height: auto;
+  margin-top: 10px;
+  font-size: 1.5em;
+  line-height: 2em;
+  box-sizing: border-box;
+  background-color: #d9edf7;
+  transition: background-color 0.25s ease-out;
+}
+
+.datetime-range .close-button::before {
+  content: "";
+  position: absolute;
+  right: -0.5em;
+  top: -1px;
+  width: 1em;
+  height: 2em;
+  background: #d9edf7;
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  transition: background 0.25s ease-out;
+  transform: skewX(-26deg);
+}
+
+.datetime-range .close-button:hover,
+.datetime-range .close-button:hover::before {
+  background: #ddd;
+}

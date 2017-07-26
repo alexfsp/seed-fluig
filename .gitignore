@@ -1,0 +1,36 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Fluig project
+.metadata
+seed-fluig/datasets
+seed-fluig/events
+seed-fluig/forms
+seed-fluig/mechanisms
+seed-fluig/wcm/widget
+seed-fluig/workflow/.resources
+
+# Dataset auxiliar. Não faz parte do projeto
+src/datasets/fluig_converte_form.js
+
+# compiled output
+dist
+tmp
+build
+
+# dependencies
+/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+.sass-cache
+npm-debug.log
+
+# System Files
+.DS_Store
+Thumbs.db

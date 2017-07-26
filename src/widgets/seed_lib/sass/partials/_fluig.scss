@@ -1,0 +1,189 @@
+.fluig-style-guide .btn-group > .btn {
+  border-radius: 0;
+}
+
+.fs-text-xs {
+  font-size: 0.6875rem !important
+}
+
+.fs-text-sm {
+  font-size: 0.7500rem !important
+}
+
+.fs-text-md {
+  font-size: 0.8800rem !important
+}
+
+.fs-text-lg {
+  font-size: 1.1250rem !important
+}
+
+.fs-text-xl {
+  font-size: 1.2500rem !important
+}
+
+.blockUI.blockMsg.blockElement {
+  width: 100% !important;
+  left: 0 !important;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .fluig-style-guide .hidden-sm {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fluig-style-guide .hidden-md {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .fluig-style-guide .visible-sm {
+    display: block !important;
+  }
+  .fluig-style-guide table.visible-sm {
+    display: table;
+  }
+  .fluig-style-guide tr.visible-sm {
+    display: table-row !important;
+  }
+  .fluig-style-guide th.visible-sm,
+  .fluig-style-guide td.visible-sm {
+    display: table-cell !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .fluig-style-guide .visible-sm-block {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .fluig-style-guide .visible-sm-inline {
+    display: inline !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .fluig-style-guide .visible-sm-inline-block {
+    display: inline-block !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fluig-style-guide .visible-md {
+    display: block !important;
+  }
+  .fluig-style-guide table.visible-md {
+    display: table;
+  }
+  .fluig-style-guide tr.visible-md {
+    display: table-row !important;
+  }
+  .fluig-style-guide th.visible-md,
+  .fluig-style-guide td.visible-md {
+    display: table-cell !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fluig-style-guide .visible-md-block {
+    display: block !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fluig-style-guide .visible-md-inline {
+    display: inline !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fluig-style-guide .visible-md-inline-block {
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-tabs.nav-justified > li {
+    display: table-cell !important;
+    width: 1% !important;
+  }
+  .fluig-style-guide .nav-tabs.nav-justified > .active > a,
+  .fluig-style-guide .nav-tabs.nav-justified > .active > a:hover,
+  .fluig-style-guide .nav-tabs.nav-justified > .active > a:focus {
+    border-bottom-color: #fff;
+  }
+  /*.fluig-style-guide,
+    .fluig-style-guide p,
+    .fluig-style-guide td,
+    .fluig-style-guide th {
+        font-size: 1.2rem !important;
+    }*/
+  input:focus,
+  textarea:focus {
+    z-index: 10000 !important;
+    position: relative !important;
+  }
+  .fluig-typeahead.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 10000 !important;
+    // background: #fff !important;
+    width: 100% !important;
+    border: 0 !important;
+  }
+  .tt-dropdown-menu {
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  /*.fluig-style-guide .form-control {
+        height: 46px !important;
+        padding: 10px 16px !important;
+        font-size: 18px !important;
+        line-height: 1.33 !important;
+        border-radius: 6px !important;
+    }*/
+  /*.fluig-style-guide select .form-control {
+        height: 46px !important;
+        line-height: 46px !important;
+    }*/
+  .fluig-style-guide textarea .form-control,
+  .fluig-style-guide select[multiple] .form-control {
+    height: auto !important;
+  }
+}
+
+.tt-suggestion {
+  font-size: 20px;
+}
+
+.fluig-typeahead {
+  // background-color: #fff !important;
+}
+
+.fluig-style-guide .form-control[readonly] {
+  background-color: #eee !important;
+}
+
+.fluig-style-guide .form-control[disabled],
+.fluig-style-guide fieldset[disabled] .form-control {
+  background-color: #eee !important;
+}
+
+.fluig-style-guide .bootstrap-tagsinput .tag .tag-text {
+  max-width: none !important;
+}
+
+.fluig-style-guide.modal {
+  overflow: auto !important;
+}
+
+.fluig-style-guide.modal.full {
+  /*height: 90%;*/
+}

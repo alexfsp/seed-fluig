@@ -1,0 +1,14 @@
+application.type=widget
+application.code=seed_lib
+application.title=Bibliotecas para uso geral
+application.description=Bibliotecas para uso geral
+application.category=Seed
+developer.code=alexson
+developer.name=Alexson Ferreira
+developer.url=http://www.fluig.com
+application.uiwidget=false
+application.mobileapp=false
+application.icon=icon.png
+view.file=view.html
+edit.file=edit.html
+locale.file.base.name=seed_lib

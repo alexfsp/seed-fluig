@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Gestor</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Gestor</label>
+                        <!-- <input type="text" name="gestor" class="form-control" ng-model="vm.Formulario.gestor" ng-value="vm.Formulario.gestor"> -->
+                        <h3>{{vm.Formulario.gestor}}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Data do Parecer</label>
+                        <!-- <input type="text" fluig-date-mask name="gestorDataAprovacao" class="form-control" ng-model="vm.Formulario.gestorDataAprovacao" ng-value="vm.Formulario.gestorDataAprovacao"> -->
+                        <h3>{{vm.Formulario.data | date}}</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Aprovado</label>
+                        <input type="checkbox" fluig-switch data-on-text="SIM" data-off-text="NÃO" data-on-color="success" name="gestorAprovacao" class="form-control" ng-model="vm.Formulario.gestorAprovacao" ng-value="vm.Formulario.gestorAprovacao">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Observações</label>
+                        <textarea name="gestorObservacoes" class="form-control" ng-model="vm.Formulario.gestorObservacoes" ng-value="vm.Formulario.gestorObservacoes"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Diretoria</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Diretor</label>
+                        <!-- <input type="text" name="diretor" class="form-control" ng-model="vm.Formulario.diretor" ng-value="vm.Formulario.diretor"> -->
+                        <h3>{{vm.Formulario.diretor}}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Data do Parecer</label>
+                        <!-- <input type="text" fluig-date-mask name="diretorDataAprovacao" class="form-control" ng-model="vm.Formulario.diretorDataAprovacao" ng-value="vm.Formulario.diretorDataAprovacao"> -->
+                        <h3>{{vm.Formulario.data | date}}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Aprovado</label>
+                        <input type="checkbox" fluig-switch data-on-text="SIM" data-off-text="NÃO" data-on-color="success" name="diretorAprovacao_input" class="form-control" ng-model="vm.Formulario.diretorAprovacao" ng-value="vm.Formulario.diretorAprovacao">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label">Observações</label>
+                        <textarea name="diretorObservacoes" class="form-control" ng-model="vm.Formulario.diretorObservacoes" ng-value="vm.Formulario.diretorObservacoes"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Financeiro</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="control-label">Responsável</label>
+                        <!-- <input type="text" name="financeiro" class="form-control" ng-model="vm.Formulario.financeiro" ng-value="vm.Formulario.financeiro"> -->
+                        <h3>{{vm.Formulario.financeiro}}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Data do Parecer</label>
+                        <!-- <input type="text" fluig-date-mask name="financeiroDataAprovacao" class="form-control" ng-model="vm.Formulario.financeiroDataAprovacao" ng-value="vm.Formulario.financeiroDataAprovacao"> -->
+                        <h3>{{vm.Formulario.data | date}}</h3>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Aprovado</label>
+                        <input type="checkbox" fluig-switch data-on-text="SIM" data-off-text="NÃO" data-on-color="success" name="financeiroAprovacao" class="form-control" ng-model="vm.Formulario.financeiroAprovacao" ng-value="vm.Formulario.financeiroAprovacao">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Observações</label>
+                        <textarea name="financeiroObservacoes" class="form-control" ng-model="vm.Formulario.financeiroObservacoes" ng-value="vm.Formulario.financeiroObservacoes"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
