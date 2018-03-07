@@ -19,32 +19,31 @@
 
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody >
+                            <tr ng-repeat="despesa in vm.Formulario.despesas">
                                 <td>
-                                    <span ng-if="vm.Params.edit" ng-click="vm.removeDepsesa($event)" class="fluigicon fluigicon-md fluigicon-trash fs-cursor-pointer"></span>
+                                    <span ng-if="vm.Params.edit" ng-click="vm.removeDespesa(despesa, $index)" class="fluigicon fluigicon-md fluigicon-trash fs-cursor-pointer"></span>
                                 </td>
-                                <td ng-child="vm.Formulario.despesaRef" id="despesaRef">
-                                    <h4>1</h4>
-                                    <!-- <input type="text" class="form-control" name="despesaRef" ng-model="vm.Formulario.despesaRef" ng-value="vm.Formulario.despesaRef"> -->
+                                <td>
+                                    <h4>{{$index}}</h4>
                                 </td>
-                                <td ng-child="vm.Formulario.despesaData" id="despesaData">
-                                    <input type="text" class="form-control" name="despesaData_input" ng-model="vm.Formulario.despesaData" ng-child-tags='{"fluig-date-mask":""}'>
-                                    <input type="hidden" name="despesaData" ng-value="vm.Formulario.despesaData">
+                                <td>
+                                    <input type="text" class="form-control" name="despesa_dataInput" ng-model="despesa.data" fluig-date-mask>
+                                    <input type="hidden" name="despesa_data" ng-value="despesa.data">
                                 </td>
-                                <td ng-child="vm.Formulario.despesa" id="despesa">
-                                    <input type="text" ng-child-tags='{"fluig-autocomplete":""}' class="form-control" name="despesa_input" ng-model="vm.Formulario.despesa" values="Despesas" display-key="descricao">
-                                    <input type="hidden" class="form-control" name="despesa" ng-value="vm.Formulario.despesa">
+                                <td>
+                                    <input type="text" fluig-autocomplet class="form-control" name="despesa_despesaInput" ng-model="despesa.despesa" values="Despesas" display-key="descricao">
+                                    <input type="hidden" class="form-control" name="despesa_despesa" ng-value="despesa.despesa | json:0">
                                 </td>
-                                <td ng-child="vm.Formulario.despesaFornecedor" id="despesaFornecedor">
-                                    <input type="text" class="form-control" name="despesaFornecedor" ng-model="vm.Formulario.despesaFornecedor" ng-value="vm.Formulario.despesaFornecedor">
+                                <td>
+                                    <input type="text" class="form-control" name="despesa_fornecedor" ng-model="despesa.fornecedor" ng-value="despesa.fornecedor">
                                 </td>
-                                <td ng-child="vm.Formulario.despesaHistorico" id="despesaHistorico">
-                                    <input type="text" class="form-control" name="despesaHistorico" ng-model="vm.Formulario.despesaHistorico" ng-value="vm.Formulario.despesaHistorico">
+                                <td>
+                                    <input type="text" class="form-control" name="despesa_historico" ng-model="despesa.historico" ng-value="despesa.historico">
                                 </td>
-                                <td ng-child="vm.Formulario.despesaValor" id="despesaValor">
-                                    <input type="text" class="form-control" name="despesaValor_input" ng-model="vm.Formulario.despesaValor" ng-child-tags='{"fluig-money-mask":""}'>
-                                    <input type="hidden" class="form-control" name="despesaValor" ng-value="vm.Formulario.despesaValor">
+                                <td>
+                                    <input type="text" class="form-control" name="despesa_valorInput" ng-model="despesa.valor" fluig-money-mask>
+                                    <input type="hidden" class="form-control" name="despesa_valor" ng-value="despesa.valor">
                                 </td>
                             </tr>
                         </tbody>
@@ -55,6 +54,9 @@
         </div>
     </div>
 </div>
+
+{{vm.Formulario.despesas | json}}
+
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-default">

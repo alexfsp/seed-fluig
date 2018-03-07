@@ -1,7 +1,7 @@
-angular.module('AdfApp', ['adf.directives', 'adf.services', 'angular.fluig', 'ngAnimate'])
+angular.module('SeedApp', ['angular.fluig', 'ngAnimate', 'seed.services'])
 
-  .controller('AdfController', ['$scope', '$http', '$timeout', '$log', 'erpService', 'fluigService', 'formService', 'adfService',
-    function AdfController($scope, $http, $timeout, $log, erpService, fluigService, formService, adfService) {
+  .controller('SeedController', ['$scope', '$http', '$timeout', '$log', 'formService',
+    function SeedController($scope, $http, $timeout, $log, formService) {
       const vm = this;
       formService.atualizaFormulario($scope, vm)
         .then(() => {
@@ -17,16 +17,15 @@ angular.module('AdfApp', ['adf.directives', 'adf.services', 'angular.fluig', 'ng
       };
 
       vm.adicionaDespesa = function adicionaDespesa() {
-        wdkAddChild('despesas');
-        formService.updateChildren($scope);
+        vm.Formulario.despesas.push({});
       };
 
-      vm.removeDespesa = function removeDespesa($event) {
+      vm.removeDespesa = function removeDespesa(despesa, $index) {
         FLUIGC.message.confirm({
           message: 'Deseja excluir esse registro?',
           title: 'Excluir despesa'
         }, (result) => {
-          if (result) { fnWdkRemoveChild($event.currentTarget); }
+          if (result) { vm.Formulario.despesas.slice($index, 1); }
         });
       };
 
