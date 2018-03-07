@@ -5,6 +5,7 @@
   "js": [
     "node_modules/angular/angular.js",
     "node_modules/angular-animate/angular-animate.js",
+    "../angular.fluig/build/angular-fluig-standalone.js",
     "node_modules/angular-locale-pt-br/angular-locale_pt-br.js",
     "node_modules/chart.js/dist/Chart.js",
     "node_modules/angular-chart.js/dist/angular-chart.js",
