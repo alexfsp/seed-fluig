@@ -43,6 +43,7 @@
     "gulp-uglifycss": "1.0.8",
     "gulp-util": "3.0.8",
     "gulp-war": "0.1.4",
+    "gulp-webserver": "0.9.1",
     "gulp-zip": "3.2.0",
     "htmlmin": "0.0.7",
     "path": "0.12.7",
@@ -62,5 +63,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "cliServer": "http://fluig2016tnu.brazilsouth.cloudapp.azure.com:8081"
 }

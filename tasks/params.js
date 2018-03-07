@@ -7,6 +7,7 @@ module.exports = function params() {
 
   const p = {};
   p.project = nodePackage.name;
+  p.cliServer = nodePackage.cliServer;
   p.prod = argv.prod;
   p.uglify = argv.uglify;
   p.htmlmin = argv.htmlmin;
