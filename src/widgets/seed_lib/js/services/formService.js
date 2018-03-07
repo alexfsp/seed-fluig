@@ -21,7 +21,7 @@ angular.module('seed.services')
           vm.Formulario = {};
           vm.Errors = [];
 
-          this.updateChildren(scope);
+          this.updateChildren(scope, vm);
 
           if (angular.element('#Params')
             .val() !== '') {
@@ -64,7 +64,7 @@ angular.module('seed.services')
             .hide();
 
           scope.processDefinition =
-            parent.ECM.workflowView ? parent.ECM.workflowView.processDefinition : {};
+            parent.ECM && parent.ECM.workflowView ? parent.ECM.workflowView.processDefinition : {};
 
           defer.resolve();
           loading.hide();
@@ -77,91 +77,72 @@ angular.module('seed.services')
         return defer.promise;
       },
 
-      updateChildren: function updateChildren(scope) {
-        const rows = [];
+      updateChildren: function updateChildren(scope, vm) {
+        
 
-        // busca todos os elementos com ng-child
-        angular.forEach(angular.element('[ng-child]'),
+        angular.forEach(angular.element('[tablename]'),
           (value) => {
-            const element = angular.element(value);
+            const table = angular.element(value);
 
-            const name = element.attr('name') ? element.attr('name') : element.attr('id');
+            const tablename = table.attr('tablename');
 
-            if (name) {
-              if (name.indexOf('___') >= 0) {
-                const child = element.attr('ng-child');
+            vm.Formulario[tablename] = [];
 
-                const fluigId = name.split('___')[1];
+            angular.forEach(table.find('tbody tr'), child => {
+              const childElement = angular.element(child);
 
-                const html = globalService.replaceAll(element.html(), child, `${child}___${fluigId}`);
+              if (childElement.attr('detail')) {
+                childElement.attr('style', null);
+                childElement.attr('detail', null);
+                childElement.attr('detailname', null);
 
-                element.html(html);
+                angular.forEach(childElement
+                  .find('[name]'), field => {
+                    const fieldElement = angular.element(field);
+                    fieldElement.attr('name', fieldElement.attr('name') + '___{{$index+1}}')
+                  });
+              } else {
+                let obj = {};
+                angular.forEach(childElement
+                  .find('[name]'), field => {
 
-                // aplica
-                this.applyChildTags(element);
-                angular.forEach(element.children(),
-                  (childValue) => {
-                    this.applyChildTags(angular.element(childValue));
+                    const element = angular.element(field);
+                    if (element.attr('ng-value')) {
+                      const name = element.attr('name')
+                        .split('_')[1];
+                      if (name) {
+                        obj[name] = globalService.isJson(element.val()) ?
+                          angular.fromJson(element.val()) :
+                          element.val();
+                      }
+                    }
                   });
 
-                element.removeAttr('ng-child');
-                let parent = element[0];
+                vm.Formulario[tablename].push(obj);
+                childElement.remove();
 
-                while (parent !== null) {
-                  if (parent.nodeName.toUpperCase() === 'TR') {
-                    if (rows.indexOf(parent) < 0) {
-                      rows.push(parent);
-                    }
-                    parent = null;
-                  }
-
-                  if (parent) { parent = parent.parentNode; }
-                }
               }
-            }
-          });
 
-        angular.forEach(rows, (row) => {
-          $compile(row)(scope);
-        });
-      },
-
-      applyChildTags: function applyChildTags(element) {
-        const ngChildTags = element.attr('ng-child-tags');
-        if (ngChildTags) {
-          const tags = angular.fromJson(ngChildTags);
-          Object.keys(tags)
-            .forEach((key) => {
-              if (key) { element.attr(key, tags[key]); }
             });
 
-          element.removeAttr('ng-child-tags');
-        }
-      },
+            angular.forEach(table.find('tbody'), tbody => {
+              angular.element(tbody)
+                .attr('ng-non-bindable', null);
+            })
 
-      carregaItens: function carregaItens(table) {
-        const Dados = [];
-        angular.forEach(angular.element(`${table} tr td input`),
-          (value) => {
-            const element = angular.element(value);
-            const name = element.attr('name');
-            const field = name.split('___')[0];
-            const id = name.split('___')[1];
-            let index = Dados.map(x => x.id)
-              .indexOf(id);
-
-            if (id) {
-              if (index < 0) {
-                index = Dados.push({
-                  id
-                }) - 1;
+            angular.forEach(table.find('.bpm-mobile-column'), value => {
+              const bpmColumn = angular.element(value);
+              const tdContent = bpmColumn.find('.td-content')[0];
+              $log.log(bpmColumn)
+              if (tdContent) {
+                const tdContentElement = angular.element(tdContent);
+                $log.log(tdContentElement.html());
+                bpmColumn.class = '';
+                bpmColumn.html(tdContentElement.contents());
               }
-
-              Dados[index][field] = element.val();
-            }
+            });
+            $compile(table)(scope);
           });
-
-        return Dados;
       }
     })
   ]);
