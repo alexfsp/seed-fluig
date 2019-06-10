@@ -1,4 +1,4 @@
-angular.module('mhps.services')
+angular.module('seed.services')
   .factory('formService', ['$q', '$http', '$compile', '$timeout', '$log', 'globalService',
     ($q, $http, $compile, $timeout, $log, globalService) => ({
       /**
