@@ -3,31 +3,73 @@ angular.module('seedApp', ['angular.fluig', 'ngAnimate', 'seed.services'])
   .controller('seedController', ['$scope', '$http', '$timeout', '$log', 'formService',
     function seedController($scope, $http, $timeout, $log, formService) {
       const vm = this;
+
+      if (window.location.hostname == 'localhost') {
+        angular.forEach(angular.element('[tablename]'),
+          (value) => {
+            const table = angular.element(value);
+            angular.forEach(table.find('tbody'), tbody => {
+              angular.element(tbody)
+                .attr('ng-non-bindable', null);
+              $compile(table)($scope);
+            })
+          });
+      }
+
       formService.atualizaFormulario($scope, vm)
         .then(() => {
           vm.inicia();
         });
 
       vm.inicia = function inicia() {
-        vm.Formulario.solicitante = "ALEX FERREIRA";
-        vm.Formulario.gestor = "PAULA NASCIMENTO";
-        vm.Formulario.diretor = "JOSE ARANTES";
-        vm.Formulario.financeiro = "ADRIANA ASSUNCAO";
-        vm.Formulario.data = new Date();
+        vm.checkLocal();
+        vm.checkRegras();
       };
 
-      vm.adicionaDespesa = function adicionaDespesa() {
-        vm.Formulario.despesas.push({});
-      };
+      vm.checkRegras = function checkRegras() {
+        vm.etapas = ['consulta', 'inicio', 'revisarSolicitacao', 'analisarErros'];
 
-      vm.removeDespesa = function removeDespesa(despesa, $index) {
+        vm.regras = {};
+        [
+          { regra: 'showResumo', def: true, etapas: vm.etapas },
+          { regra: 'showSolicitacao', def: true, etapas: ['inicio', 'consulta', 'revisarSolicitacao', 'analisarErros'] },
+          { regra: 'enableSolicitacao', def: vm.Params.edit, etapas: ['inicio', 'revisarSolicitacao'] },
+
+
+        ].forEach(o => {
+          vm.regras[o.regra] = vm.Params.user == "adminx" && vm.Params.edit ? true : o.etapas.indexOf(vm.Params.etapa) >= 0 ? o.def : false;
+        });
+      }
+
+      vm.removeChild = function removeChild(Array, item) {
         FLUIGC.message.confirm({
           message: 'Deseja excluir esse registro?',
-          title: 'Excluir despesa'
+          title: 'Excluir'
         }, (result) => {
-          if (result) { vm.Formulario.despesas.slice($index, 1); }
+          if (result) {
+            Array.splice(Array.indexOf(item), 1);
+            $scope.$apply();
+          }
         });
       };
+
+      vm.checkLocal = function checkLocal() {
+        if (window.location.hostname == 'localhost') {
+          vm.Params = {
+            edit: true,
+            etapa: "inicio",
+            user: 'admin',
+            formMode: 'ADD'
+          };
+
+          vm.Formulario.solicitante = "ALEX FERREIRA";
+          vm.Formulario.gestor = "PAULA NASCIMENTO";
+          vm.Formulario.diretor = "JOSE ARANTES";
+          vm.Formulario.financeiro = "ADRIANA ASSUNCAO";
+          vm.Formulario.data = new Date();
+
+        }
+      }
 
     }
   ]);
