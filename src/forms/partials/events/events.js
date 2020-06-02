@@ -2,7 +2,7 @@
 /*jshint -W116 */
 
 function value(form, field, def) {
-  return isJson(form.getValue(field)) ? JSON.parse(form.getValue(field)) : def || form.getValue(field);
+  return form.getValue(field) == `` ? null : isJson(form.getValue(field)) ? JSON.parse(form.getValue(field)) : def || form.getValue(field);
 }
 
 function getChildren(form, tablename, inputs) {

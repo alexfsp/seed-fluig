@@ -1,11 +1,16 @@
-function callDatasul(programa, metodo, json, tenantId) {
+function callDatasul(programa, metodo, json, tenantId, properties, usuario) {
 
-  log.info(">>>>>> tenantId: " + tenantId);
+  properties = properties || {};
+  usuario = usuario || 'super';
 
-  const serviceProvider = ServiceManager.getService('WSEXECBO');
+  const serviceProvider = ServiceManager.getServiceInstance('WSEXECBO');
   const serviceLocator = serviceProvider.instantiate('com.totvs.framework.ws.execbo.service.WebServiceExecBO');
   const service = serviceLocator.getWebServiceExecBOPort();
+  const client = serviceProvider.getCustomClient(service, "com.totvs.framework.ws.execbo.service.ExecBOServiceEndpoint", properties);
 
+  if (!json.ttParam) {
+    json.ttParam = [{}];
+  }
   json.ttParam[0].tmpField = '';
 
   const input = {
@@ -26,17 +31,15 @@ function callDatasul(programa, metodo, json, tenantId) {
 
   const jsonParams = JSON.stringify(params);
 
-  const token = service.userLogin('super');
+  const token = client.userLogin(usuario);
 
   let resp;
 
   if (tenantId) {
-    resp = service.callProcedureWithTokenAndCompany(token, tenantId, programa, metodo, jsonParams);
+    resp = client.callProcedureWithTokenAndCompany(token, tenantId, programa, metodo, jsonParams);
   } else {
-    resp = service.callProcedureWithToken(token, programa, metodo, jsonParams);
+    resp = client.callProcedureWithToken(token, programa, metodo, jsonParams);
   }
-
-  log.info(`Retorno callDatasul: ${resp}`);
 
   // Converte o resultado para um objeto
   const respObj = JSON.parse(resp);

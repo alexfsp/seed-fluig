@@ -50,8 +50,8 @@ angular.module('seed.services')
                   vm.Formulario[name] =
 
                     globalService.isJson(element.val()) ?
-                    angular.fromJson(element.val()) :
-                    element.val();
+                      angular.fromJson(element.val()) :
+                      element.val();
                 }
               }
             }
@@ -78,8 +78,6 @@ angular.module('seed.services')
       },
 
       updateChildren: function updateChildren(scope, vm) {
-        
-
         angular.forEach(angular.element('[tablename]'),
           (value) => {
             const table = angular.element(value);

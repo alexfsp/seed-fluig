@@ -20,6 +20,16 @@ module.exports = function forms() {
           .pipe(gulp.dest(`${params.project}/forms/${file.relative}`));
 
         // ****** Busca os eventos
+        gulp.src('src/forms/partials/events/**/*')
+          // se produção, compacta o javascript
+          .pipe($.babel(params.babelOptions))
+          .pipe($.concat('events.js'))
+          // .pipe($.if(params.uglify, $.uglify(params.uglifyOptions)
+          //   .on('error', $.util.log)))
+          // envia para o diretório de eventos do formulário
+          .pipe(gulp.dest(`${params.project}/forms/${file.relative}/events/`));
+
+        // ****** Busca os eventos
         gulp.src(`${file.path}/events/**/*`)
           // se produção, compacta o javascript
           .pipe($.babel(params.babelOptions))

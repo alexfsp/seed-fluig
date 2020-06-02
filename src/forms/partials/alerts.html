@@ -1,11 +1,7 @@
-<div class="row">
-    <div ng-if="!vm.Params.edit" class="alert alert-warning animate" role="alert">
-        <span class="fluigicon fluigicon-md fluigicon-exclamation-sign"></span> Para alterar o registro clique no botão Editar
-        Formulário acima
-    </div>
-</div>
 <div class="row" ng-repeat="erro in vm.Errors">
-    <div ng-if="vm.Params.edit" class="alert alert-danger animate" role="alert">
-        {{erro}}
+    <div class="col-sm-12">
+        <div ng-if="vm.Params.edit" class="alert alert-danger animate" role="alert">
+            {{erro}}
+        </div>
     </div>
 </div>

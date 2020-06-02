@@ -6,6 +6,7 @@ Projeto Seed Fluig (start para novos projetos)
 
 Requer [Node.js](https://nodejs.org/) v4+.
 
+Substitua o nome do arquivo src/widgets/seed_lib/js/services/seedService.js por nomeDoClienteService.js
 Substitua a string "seed" em todos os locais pelo nome do cliente
 Substitua o nome da pasta seed_lib em src/widgets por nomeDoCliente_lib
 Substitua o nome da pasta seed-fluig por nomeDoCliente-fluig

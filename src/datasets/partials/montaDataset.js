@@ -1,11 +1,19 @@
-function montaDataset(erro, json, campos, display, dePara) {
+function montaDataset(erro, json, campos, display, dePara, sync) {
   const dataset = DatasetBuilder.newDataset();
+
+  let row;
+
   if (!dePara) dePara = campos;
 
   if (erro) {
     dataset.addColumn('erro');
     for (var i = 0; i < erro.length; i++) {
-      dataset.addRow([erro[i].mensagem]);
+      if (sync) {
+        dataset.addOrUpdateRow([erro[i].mensagem]);
+      } else {
+        dataset.addRow([erro[i].mensagem]);
+      }
+      
     }
     return dataset;
   }
@@ -20,7 +28,6 @@ function montaDataset(erro, json, campos, display, dePara) {
 
   dataset.addColumn('displaykey');
 
-  let row;
   for (var i = 0; i < json.length; i++) {
     row = [];
     for (let c = 0; c < dePara.length; c++) {
@@ -33,8 +40,12 @@ function montaDataset(erro, json, campos, display, dePara) {
       row[campos.length] += json[i][display[d]];
       if (d < display.length - 1) row[campos.length] += ' - ';
     }
+    if (sync) {
+      dataset.addOrUpdateRow(row);
+    } else {
+      dataset.addRow(row);
+    }
 
-    dataset.addRow(row);
   }
   return dataset;
 }

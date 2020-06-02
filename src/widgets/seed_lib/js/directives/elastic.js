@@ -1,4 +1,11 @@
+if (typeof module !== 'undefined' &&
+  typeof exports !== 'undefined' &&
+  module.exports === exports) {
+  module.exports = 'elastic';
+}
+
 angular.module('seed.directives')
+
   .constant('elasticConfig', {
     append: ''
   })
@@ -37,23 +44,19 @@ angular.module('seed.directives')
           var append = attrs.elastic ? attrs.elastic.replace(/\\n/g, '\n') : config.append,
             $win = angular.element($window),
             mirrorInitStyle = 'position: absolute; top: -999px; right: auto; bottom: auto;' +
-            'left: 0; overflow: hidden; -webkit-box-sizing: content-box;' +
-            '-moz-box-sizing: content-box; box-sizing: content-box;' +
-            'min-height: 0 !important; height: 0 !important; padding: 0;' +
-            'word-wrap: break-word; border: 0;',
+              'left: 0; overflow: hidden; -webkit-box-sizing: content-box;' +
+              '-moz-box-sizing: content-box; box-sizing: content-box;' +
+              'min-height: 0 !important; height: 0 !important; padding: 0;' +
+              'word-wrap: break-word; border: 0;',
             $mirror = angular.element('<textarea aria-hidden="true" tabindex="-1" ' +
-              'style="' + mirrorInitStyle + '"/>')
-            .data('elastic', true),
+              'style="' + mirrorInitStyle + '"/>').data('elastic', true),
             mirror = $mirror[0],
             taStyle = getComputedStyle(ta),
             resize = taStyle.getPropertyValue('resize'),
             borderBox = taStyle.getPropertyValue('box-sizing') === 'border-box' ||
-            taStyle.getPropertyValue('-moz-box-sizing') === 'border-box' ||
-            taStyle.getPropertyValue('-webkit-box-sizing') === 'border-box',
-            boxOuter = !borderBox ? {
-              width: 0,
-              height: 0
-            } : {
+              taStyle.getPropertyValue('-moz-box-sizing') === 'border-box' ||
+              taStyle.getPropertyValue('-webkit-box-sizing') === 'border-box',
+            boxOuter = !borderBox ? { width: 0, height: 0 } : {
               width: parseInt(taStyle.getPropertyValue('border-right-width'), 10) +
                 parseInt(taStyle.getPropertyValue('padding-right'), 10) +
                 parseInt(taStyle.getPropertyValue('padding-left'), 10) +
@@ -77,8 +80,7 @@ angular.module('seed.directives')
               'line-height',
               'text-transform',
               'word-spacing',
-              'text-indent'
-            ];
+              'text-indent'];
 
           // exit if elastic already applied (or is the mirror element)
           if ($ta.data('elastic')) {
@@ -90,15 +92,13 @@ angular.module('seed.directives')
 
           // append mirror to the DOM
           if (mirror.parentNode !== document.body) {
-            angular.element(document.body)
-              .append(mirror);
+            angular.element(document.body).append(mirror);
           }
 
           // set resize and apply elastic
           $ta.css({
-              'resize': (resize === 'none' || resize === 'vertical') ? 'none' : 'horizontal'
-            })
-            .data('elastic', true);
+            'resize': (resize === 'none' || resize === 'vertical') ? 'none' : 'horizontal'
+          }).data('elastic', true);
 
           /*
            * methods
@@ -136,8 +136,7 @@ angular.module('seed.directives')
 
               taHeight = ta.style.height === '' ? 'auto' : parseInt(ta.style.height, 10);
 
-              taComputedStyleWidth = getComputedStyle(ta)
-                .getPropertyValue('width');
+              taComputedStyleWidth = getComputedStyle(ta).getPropertyValue('width');
 
               // ensure getComputedStyle has returned a readable 'used value' pixel width
               if (taComputedStyleWidth.substr(taComputedStyleWidth.length - 2, 2) === 'px') {
@@ -160,7 +159,6 @@ angular.module('seed.directives')
               if (taHeight !== mirrorHeight) {
                 scope.$emit('elastic:resize', $ta, taHeight, mirrorHeight);
                 ta.style.height = mirrorHeight + 'px';
-
               }
 
               // small delay to prevent an infinite loop
@@ -173,7 +171,8 @@ angular.module('seed.directives')
 
           function forceAdjust() {
             active = false;
-            adjust();
+            // adjust();
+            $timeout(adjust, 500, false);
           }
 
           /*
@@ -201,7 +200,7 @@ angular.module('seed.directives')
             forceAdjust();
           });
 
-          $timeout(adjust, 0, false);
+          $timeout(adjust, 500, false);
 
           /*
            * destroy

@@ -1,7 +1,7 @@
-angular.module('SeedApp', ['angular.fluig', 'ngAnimate', 'seed.services'])
+angular.module('seedApp', ['angular.fluig', 'ngAnimate', 'seed.services'])
 
-  .controller('SeedController', ['$scope', '$http', '$timeout', '$log', 'formService',
-    function SeedController($scope, $http, $timeout, $log, formService) {
+  .controller('seedController', ['$scope', '$http', '$timeout', '$log', 'formService',
+    function seedController($scope, $http, $timeout, $log, formService) {
       const vm = this;
       formService.atualizaFormulario($scope, vm)
         .then(() => {
