@@ -10,6 +10,7 @@ Substitua o nome do arquivo src/widgets/seed_lib/js/services/seedService.js por 
 Substitua a string "seed" em todos os locais pelo nome do cliente
 Substitua o nome da pasta seed_lib em src/widgets por nomeDoCliente_lib
 Substitua o nome da pasta seed-fluig por nomeDoCliente-fluig
+Altere a propriedade cliServer para a URL do cliente no arquivo package.json
 
 Instale as dependências e inicie:
 

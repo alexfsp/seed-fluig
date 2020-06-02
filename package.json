@@ -8,9 +8,11 @@
     "angular-animate": "1.6.3",
     "angular-chart.js": "1.1.1",
     "angular-fluig": "1.0.3",
+    "angular-route": "1.7.0",
     "chart.js": "2.5.0",
     "components-font-awesome": "4.7.0",
-    "moment": "2.18.1"
+    "moment": "2.18.1",
+    "ng-file-upload": "^12.2.13"
   },
   "devDependencies": {
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
@@ -37,7 +39,7 @@
     "gulp-prompt": "0.2.0",
     "gulp-rename": "1.2.2",
     "gulp-rimraf": "0.2.1",
-    "gulp-sass": "2.3.2",
+    "gulp-sass": "3.0.0",
     "gulp-sourcemaps": "2.5.0",
     "gulp-tap": "0.1.3",
     "gulp-uglify": "2.1.2",
@@ -65,5 +67,5 @@
   },
   "author": "",
   "license": "ISC",
-  "cliServer": "http://fluig2016tnu.brazilsouth.cloudapp.azure.com:8081"
+  "cliServer": "http://fluig2016tnu.brazilsouth.cloudapp.azure.com:8082"
 }
