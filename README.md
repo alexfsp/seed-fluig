@@ -4,7 +4,7 @@ Projeto Seed Fluig (start para novos projetos)
 
 ### Instalação
 
-Requer [Node.js](https://nodejs.org/) v4+.
+Requer [Node.js](https://nodejs.org/) (recomendável 11.13.0).
 
 Substitua o nome do arquivo src/widgets/seed_lib/js/services/seedService.js por nomeDoClienteService.js
 Substitua a string "seed" em todos os locais pelo nome do cliente
